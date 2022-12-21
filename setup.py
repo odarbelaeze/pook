@@ -62,7 +62,7 @@ with codecs.open("History.rst", encoding="utf-8") as f:
 
 
 setup(
-    name="pook",
+    name="modern-pook",
     version=version,
     author="Tomas Aparicio",
     author_email="tomas@aparicio.me",

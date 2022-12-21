@@ -1,5 +1,10 @@
-pook |Build Status| |PyPI| |Coverage Status| |Documentation Status| |Stability| |Quality| |Versions|
-====================================================================================================
+modern-pook
+===========
+
+|Build Status|
+
+This is somewhat of a verbatim copy of `h2non/pook`_, but it doesn't support python 2,
+or older versions of python 3. Use this one if you need python 3.11 support.
 
 Versatile, expressive and hackable utility library for HTTP traffic mocking
 and expectations made easy in `Python`_. Heavily inspired by `gock`_.
@@ -59,13 +64,13 @@ Using ``pip`` package manager (requires pip 1.8+):
 
 .. code:: bash
 
-    pip install --upgrade pook
+    pip install --upgrade modern-pook
 
 Or install the latest sources from Github:
 
 .. code:: bash
 
-    pip install -e git+git://github.com/h2non/pook.git#egg=pook
+    pip install -e git+git://github.com/odarbelaeze/pook.git#egg=pook
 
 
 Getting started
@@ -227,7 +232,7 @@ Clone the repository:
 
 .. code:: bash
 
-    git clone git@github.com:h2non/pook.git
+    git clone git@github.com:odarbelaeze/pook.git
 
 
 Install dependencies:
@@ -270,6 +275,7 @@ License
 
 MIT - Tomas Aparicio
 
+.. _h2non/pook: https://github.com/h2non/pook
 .. _Go: https://golang.org
 .. _Python: http://python.org
 .. _gock: https://github.com/h2non/gock
@@ -287,20 +293,5 @@ MIT - Tomas Aparicio
 .. _how it works: http://pook.readthedocs.io/en/latest/how_it_works.html
 .. _mocket: https://github.com/mindflayer/python-mocket
 
-.. |Build Status| image:: https://travis-ci.org/h2non/pook.svg?branch=master
-   :target: https://travis-ci.org/h2non/pook
-.. |PyPI| image:: https://img.shields.io/pypi/v/pook.svg?maxAge=2592000?style=flat-square
-   :target: https://pypi.python.org/pypi/pook
-.. |Coverage Status| image:: https://coveralls.io/repos/github/h2non/pook/badge.svg?branch=master
-   :target: https://coveralls.io/github/h2non/pook?branch=master
-.. |Documentation Status| image:: https://img.shields.io/badge/docs-latest-green.svg?style=flat
-   :target: http://pook.readthedocs.io/en/latest/?badge=latest
-.. |Quality| image:: https://codeclimate.com/github/h2non/pook/badges/gpa.svg
-   :target: https://codeclimate.com/github/h2non/pook
-   :alt: Code Climate
-.. |Stability| image:: https://img.shields.io/pypi/status/pook.svg
-   :target: https://pypi.python.org/pypi/pook
-   :alt: Stability
-.. |Versions| image:: https://img.shields.io/pypi/pyversions/pook.svg
-   :target: https://pypi.python.org/pypi/pook
-   :alt: Python Versions
+.. |Build Status| image:: https://github.com/odarbelaeze/pook/actions/workflows/python-test.yml/badge.svg?branch=main
+   :target: https://github.com/odarbelaeze/pook/actions/workflows/python-test.yml
