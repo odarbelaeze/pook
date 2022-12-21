@@ -1,11 +1,4 @@
-import sys
-
-try:
-    from collections.abc import Mapping, MutableMapping
-except ImportError:
-    from collections import Mapping, MutableMapping
-
-PY3 = sys.version_info >= (3, 0)
+from collections.abc import Mapping, MutableMapping
 
 
 class HTTPHeaderDict(MutableMapping):
@@ -76,10 +69,6 @@ class HTTPHeaderDict(MutableMapping):
 
     def __ne__(self, other):
         return not self.__eq__(other)
-
-    if not PY3:  # Python 2
-        iterkeys = MutableMapping.iterkeys
-        itervalues = MutableMapping.itervalues
 
     __marker = object()
 

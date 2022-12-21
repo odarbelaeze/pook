@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import pytest
 from pook.mock import Mock
 

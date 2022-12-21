@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import subprocess
 
 # List of engine specific test commands to run

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import pytest
 from pook import MockEngine, Engine
 from pook.interceptors import BaseInterceptor
