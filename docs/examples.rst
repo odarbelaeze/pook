@@ -96,7 +96,7 @@ Regular expression matching
 
 
 ``py.test`` integration
-^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 .. literalinclude:: ../examples/pytest_example.py
 
@@ -117,7 +117,7 @@ Using ``urllib3`` as HTTP client
 
 
 Using ``urllib3`` to return a chunked response
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. literalinclude:: ../examples/urllib3_chunked_response.py
 
@@ -140,12 +140,5 @@ Example using `mocket`_ Python library as underlying mock engine
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. literalinclude:: ../examples/mocket_example.py
-
-
-Hy programming language example
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. literalinclude:: ../examples/basic.hy
-
 
 .. _mocket: https://github.com/mindflayer/python-mocket
