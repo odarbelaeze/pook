@@ -36,15 +36,6 @@ tag:
 	@echo "$(OK_COLOR)==> Pushing tag $(version) to origin ...$(NO_COLOR)"
 	@git push origin "v$(version)"
 
-bump:
-	@bump2version --commit --tag --current-version $(version) patch pook/__init__.py --allow-dirty
-
-bump-minor:
-	@bump2version --commit --tag --current-version $(version) minor pook/__init__.py --allow-dirty
-
-bump-major:
-	@bump2version --commit --tag --current-version $(version) major pook/__init__.py --allow-dirty
-
 history:
 	@git changelog --tag $(version)
 
