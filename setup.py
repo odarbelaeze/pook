@@ -30,7 +30,7 @@ def read_version(package):
     with open(init_path, "r") as fd:
         for line in fd:
             if line.startswith("__version__ = "):
-                return line.split()[-1].strip().strip("'")
+                return line.split()[-1].strip().strip('"')
 
 
 # Get package current version
