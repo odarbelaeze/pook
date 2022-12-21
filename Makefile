@@ -42,6 +42,9 @@ bump:
 bump-minor:
 	@bumpversion --commit --tag --current-version $(version) minor pook/__init__.py --allow-dirty
 
+bump-major:
+	@bumpversion --commit --tag --current-version $(version) major pook/__init__.py --allow-dirty
+
 history:
 	@git changelog --tag $(version)
 
