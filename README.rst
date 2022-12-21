@@ -295,3 +295,5 @@ MIT - Tomas Aparicio
 
 .. |Build Status| image:: https://github.com/odarbelaeze/pook/actions/workflows/python-test.yml/badge.svg?branch=main
    :target: https://github.com/odarbelaeze/pook/actions/workflows/python-test.yml
+.. |Documentation Status| image:: https://img.shields.io/badge/docs-latest-green.svg?style=flat
+   :target: http://pook.readthedocs.io/en/latest/?badge=latest
