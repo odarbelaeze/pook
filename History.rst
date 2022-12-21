@@ -1,4 +1,10 @@
 
+v2.0.0 / 2022-12-21
+===================
+
+  * Drop support for python 2.x, and python < 3.8.
+  * Fix support for python 3.11.
+
 v1.0.2 / 2021-09-10
 ===================
 

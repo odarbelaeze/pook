@@ -1,1 +1,1 @@
-.. include:: ../History.rst
+.. include:: ../HISTORY.rst

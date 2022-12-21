@@ -57,7 +57,7 @@ with codecs.open("requirements.txt", encoding="utf-8") as f:
     install_requires = f.read().splitlines()
 with codecs.open("README.rst", encoding="utf-8") as f:
     readme = f.read()
-with codecs.open("History.rst", encoding="utf-8") as f:
+with codecs.open("HISTORY.rst", encoding="utf-8") as f:
     history = f.read()
 
 
@@ -80,7 +80,7 @@ setup(
         "": [
             "LICENSE",
             "README.rst",
-            "History.rst",
+            "HISTORY.rst",
             "requirements.txt",
             "requirements-dev.txt",
         ]
