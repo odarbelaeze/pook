@@ -37,13 +37,13 @@ tag:
 	@git push origin "v$(version)"
 
 bump:
-	@bumpversion --commit --tag --current-version $(version) patch pook/__init__.py --allow-dirty
+	@bump2version --commit --tag --current-version $(version) patch pook/__init__.py --allow-dirty
 
 bump-minor:
-	@bumpversion --commit --tag --current-version $(version) minor pook/__init__.py --allow-dirty
+	@bump2version --commit --tag --current-version $(version) minor pook/__init__.py --allow-dirty
 
 bump-major:
-	@bumpversion --commit --tag --current-version $(version) major pook/__init__.py --allow-dirty
+	@bump2version --commit --tag --current-version $(version) major pook/__init__.py --allow-dirty
 
 history:
 	@git changelog --tag $(version)
