@@ -135,7 +135,7 @@ def activate(fn=None):
         return None
 
     # If used as decorator for an async coroutine, wrap it
-    if iscoroutinefunction is not None and iscoroutinefunction(fn):
+    if iscoroutinefunction is not None and iscoroutinefunction(fn) and activate_async:
         return activate_async(fn, _engine)
 
     @functools.wraps(fn)

@@ -1,5 +1,5 @@
 import functools
-from asyncio import iscoroutinefunction, coroutine
+from asyncio import iscoroutinefunction
 
 
 def activate_async(fn, _engine):
@@ -14,13 +14,12 @@ def activate_async(fn, _engine):
         function: decorator wrapper function.
     """
 
-    @coroutine
     @functools.wraps(fn)
-    def wrapper(*args, **kw):
+    async def wrapper(*args, **kw):
         _engine.activate()
         try:
             if iscoroutinefunction(fn):
-                yield from fn(*args, **kw)  # noqa
+                await fn(*args, **kw)  # noqa
             else:
                 fn(*args, **kw)
         finally:
