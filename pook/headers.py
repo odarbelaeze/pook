@@ -238,24 +238,3 @@ class HTTPHeaderDict(MutableMapping):
 
     def to_dict(self):
         return {key: values for key, values in self.items()}
-
-    @classmethod
-    def from_httplib(cls, message):  # Python 2
-        """
-        Read headers from a Python 2 httplib message object.
-        """
-        # python2.7 does not expose a proper API for exporting multiheaders
-        # efficiently. This function re-reads raw lines from the message
-        # object and extracts the multiheaders properly.
-        headers = []
-
-        for line in message.headers:
-            if line.startswith((" ", "\t")):
-                key, value = headers[-1]
-                headers[-1] = (key, value + "\r\n" + line.rstrip())
-                continue
-
-            key, value = line.split(":", 1)
-            headers.append((key, value.strip()))
-
-        return cls(headers)

@@ -3,7 +3,6 @@ from ..request import Request
 from .base import BaseInterceptor
 from .http import URLLIB3_BYPASS
 
-# Support Python 2/3
 from unittest import mock
 
 from http.client import (

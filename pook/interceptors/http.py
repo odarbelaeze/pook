@@ -2,7 +2,6 @@ import socket
 from ..request import Request
 from .base import BaseInterceptor
 
-# Support Python 2/3
 from unittest import mock
 
 from http.client import responses as http_reasons, _CS_REQ_SENT

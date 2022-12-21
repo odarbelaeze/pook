@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import re
 from pook.regex import isregex_expr, isregex
 

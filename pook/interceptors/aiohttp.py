@@ -1,7 +1,6 @@
 from ..request import Request
 from .base import BaseInterceptor
 
-# Support Python 2/3
 from unittest import mock
 
 from urllib.parse import urlunparse, urlencode
