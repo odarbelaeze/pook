@@ -13,6 +13,6 @@ class BodyMatcher(BaseMatcher):
 
         # Decode bytes input
         if isinstance(expectation, bytes):
-            expectation = expectation.decode('utf-8')
+            expectation = expectation.decode("utf-8")
 
         return self.compare(self.expectation, req.body)

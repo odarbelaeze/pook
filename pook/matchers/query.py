@@ -1,9 +1,9 @@
 import sys
 from .base import BaseMatcher
 
-if sys.version_info < (3,):     # Python 2
+if sys.version_info < (3,):  # Python 2
     from urlparse import parse_qs
-else:                           # Python 3
+else:  # Python 3
     from urllib.parse import parse_qs
 
 
@@ -22,8 +22,7 @@ class QueryMatcher(BaseMatcher):
             param = [param] if not isinstance(param, list) else param
 
             # Compare query params
-            [[self.compare(value, expect)
-              for expect in match] for value in param]
+            [[self.compare(value, expect) for expect in match] for value in param]
 
             return True
 
@@ -39,7 +38,7 @@ class QueryMatcher(BaseMatcher):
 
         # Validate query params
         if not isinstance(query, dict):
-            raise ValueError('query params must be a str or dict')
+            raise ValueError("query params must be a str or dict")
 
         # Parse request URL query
         req_query = parse_qs(req.url.query)

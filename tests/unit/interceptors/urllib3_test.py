@@ -6,12 +6,10 @@ import pook
 
 @pook.on
 def assert_chunked_response(input_data, expected):
-    (pook.get('httpbin.org/foo')
-        .reply(204)
-        .body(input_data, chunked=True))
+    (pook.get("httpbin.org/foo").reply(204).body(input_data, chunked=True))
 
     http = urllib3.PoolManager()
-    r = http.request('GET', 'httpbin.org/foo')
+    r = http.request("GET", "httpbin.org/foo")
 
     assert r.status == 204
 
@@ -22,23 +20,23 @@ def assert_chunked_response(input_data, expected):
 
 
 def test_chunked_response_list():
-    assert_chunked_response(['a', 'b', 'c'], ['a', 'b', 'c'])
+    assert_chunked_response(["a", "b", "c"], ["a", "b", "c"])
 
 
 def test_chunked_response_str():
-    assert_chunked_response('text', ['text'])
+    assert_chunked_response("text", ["text"])
 
 
 def test_chunked_response_byte():
-    assert_chunked_response(b'byteman', ['byteman'])
+    assert_chunked_response(b"byteman", ["byteman"])
 
 
 def test_chunked_response_empty():
-    assert_chunked_response('', [])
+    assert_chunked_response("", [])
 
 
 def test_chunked_response_contains_newline():
-    assert_chunked_response('newline\r\n', ['newline\r\n'])
+    assert_chunked_response("newline\r\n", ["newline\r\n"])
 
 
 def test_activate_disable():

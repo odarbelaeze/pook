@@ -5,13 +5,13 @@ from .path import PathMatcher
 from .query import QueryMatcher
 from ..regex import isregex
 
-if sys.version_info < (3,):     # Python 2
+if sys.version_info < (3,):  # Python 2
     from urlparse import urlparse
-else:                           # Python 3
+else:  # Python 3
     from urllib.parse import urlparse
 
 # URI protocol test regular expression
-protoregex = re.compile('^http[s]?://', re.IGNORECASE)
+protoregex = re.compile("^http[s]?://", re.IGNORECASE)
 
 
 class URLMatcher(BaseMatcher):
@@ -24,7 +24,7 @@ class URLMatcher(BaseMatcher):
 
     def __init__(self, url):
         if not url:
-            raise ValueError('url argument cannot be empty')
+            raise ValueError("url argument cannot be empty")
 
         # Store original URL value
         self.url = url
@@ -36,7 +36,7 @@ class URLMatcher(BaseMatcher):
         else:
             # Add protocol prefix in the URL
             if not protoregex.match(url):
-                self.url = 'http://{}'.format(url)
+                self.url = "http://{}".format(url)
             self.expectation = urlparse(self.url)
 
     def match_path(self, req):
@@ -60,16 +60,18 @@ class URLMatcher(BaseMatcher):
             return self.compare(url, req.url.geturl(), regex_expr=True)
 
         # Match URL
-        return all([
-            self.compare(url.scheme, req.url.scheme),
-            self.compare(url.hostname, req.url.hostname),
-            self.compare(url.port or req.url.port, req.url.port),
-            self.match_path(req),
-            self.match_query(req)
-        ])
+        return all(
+            [
+                self.compare(url.scheme, req.url.scheme),
+                self.compare(url.hostname, req.url.hostname),
+                self.compare(url.port or req.url.port, req.url.port),
+                self.match_path(req),
+                self.match_query(req),
+            ]
+        )
 
     def __str__(self):
         return self.url
 
     def __repr__(self):
-        return '{}({})'.format(self.name, self.url)
+        return "{}({})".format(self.name, self.url)

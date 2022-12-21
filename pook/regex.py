@@ -1,7 +1,7 @@
 import re
 
 # Little hack to extra the regexp object type at runtime
-retype = type(re.compile(''))
+retype = type(re.compile(""))
 
 
 def isregex_expr(expr):
@@ -18,11 +18,7 @@ def isregex_expr(expr):
     if not isinstance(expr, str):
         return False
 
-    return all([
-        len(expr) > 3,
-        expr.startswith('re/'),
-        expr.endswith('/')
-    ])
+    return all([len(expr) > 3, expr.startswith("re/"), expr.endswith("/")])
 
 
 def isregex(value):

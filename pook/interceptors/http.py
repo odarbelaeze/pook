@@ -9,19 +9,17 @@ try:
 except Exception:
     from unittest import mock
 
-if sys.version_info < (3,):     # Python 2
+if sys.version_info < (3,):  # Python 2
     from httplib import responses as http_reasons, _CS_REQ_SENT
-else:                           # Python 3
+else:  # Python 3
     from http.client import responses as http_reasons, _CS_REQ_SENT
 
-PATCHES = (
-    'http.client.HTTPConnection.request',
-)
+PATCHES = ("http.client.HTTPConnection.request",)
 
-RESPONSE_CLASS = 'HTTPResponse'
-RESPONSE_PATH = 'http.client'
+RESPONSE_CLASS = "HTTPResponse"
+RESPONSE_PATH = "http.client"
 
-URLLIB3_BYPASS = '__urllib3_bypass__'
+URLLIB3_BYPASS = "__urllib3_bypass__"
 
 
 def HTTPResponse(*args, **kw):
@@ -49,15 +47,14 @@ class HTTPClientInterceptor(BaseInterceptor):
     urllib / http.client HTTP traffic interceptor.
     """
 
-    def _on_request(self, _request, conn, method, url,
-                    body=None, headers=None, **kw):
+    def _on_request(self, _request, conn, method, url, body=None, headers=None, **kw):
         # Create request contract based on incoming params
         req = Request(method)
         req.headers = headers or {}
         req.body = body
 
         # Compose URL
-        req.url = 'http://{}:{}{}'.format(conn.host, conn.port, url)
+        req.url = "http://{}:{}{}".format(conn.host, conn.port, url)
 
         # Match the request against the registered mocks in pook
         mock = self.engine.match(req)
@@ -66,8 +63,7 @@ class HTTPClientInterceptor(BaseInterceptor):
         # otherwise this statement won't be reached
         # (an exception will be raised before).
         if not mock:
-            return _request(conn, method, url,
-                            body=body, headers=headers, **kw)
+            return _request(conn, method, url, body=body, headers=headers, **kw)
 
         # Shortcut to mock response
         res = mock._response
@@ -85,6 +81,7 @@ class HTTPClientInterceptor(BaseInterceptor):
 
         def getresponse():
             return mockres
+
         conn.getresponse = getresponse
 
         conn.__response = mockres
@@ -92,7 +89,8 @@ class HTTPClientInterceptor(BaseInterceptor):
 
         # Path reader
         def read():
-            return res._body or ''
+            return res._body or ""
+
         mockres.read = read
 
         return mockres
@@ -105,12 +103,12 @@ class HTTPClientInterceptor(BaseInterceptor):
                 # Remove bypass header used as flag
                 headers.pop(URLLIB3_BYPASS)
                 # Call original patched function
-                return request(conn, method, url,
-                               body=body, headers=headers, **kw)
+                return request(conn, method, url, body=body, headers=headers, **kw)
 
             # Otherwise call the request interceptor
-            return self._on_request(request, conn, method, url,
-                                    body=body, headers=headers, **kw)
+            return self._on_request(
+                request, conn, method, url, body=body, headers=headers, **kw
+            )
 
         try:
             # Create a new patcher for Urllib3 urlopen function

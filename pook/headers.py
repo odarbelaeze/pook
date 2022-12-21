@@ -1,4 +1,5 @@
 import sys
+
 try:
     from collections.abc import Mapping, MutableMapping
 except ImportError:
@@ -56,7 +57,7 @@ class HTTPHeaderDict(MutableMapping):
 
     def __getitem__(self, key):
         val = self._container[key.lower()]
-        return ', '.join(val[1:])
+        return ", ".join(val[1:])
 
     def __delitem__(self, key):
         del self._container[key.lower()]
@@ -65,12 +66,13 @@ class HTTPHeaderDict(MutableMapping):
         return key.lower() in self._container
 
     def __eq__(self, other):
-        if not isinstance(other, Mapping) and not hasattr(other, 'keys'):
+        if not isinstance(other, Mapping) and not hasattr(other, "keys"):
             return False
         if not isinstance(other, type(self)):
             other = type(self)(other)
-        return (dict((k.lower(), v) for k, v in self.itermerged()) ==
-                dict((k.lower(), v) for k, v in other.itermerged()))
+        return dict((k.lower(), v) for k, v in self.itermerged()) == dict(
+            (k.lower(), v) for k, v in other.itermerged()
+        )
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -167,8 +169,10 @@ class HTTPHeaderDict(MutableMapping):
         with self.add instead of self.__setitem__
         """
         if len(args) > 1:
-            raise TypeError("extend() takes at most 1 positional "
-                            "arguments ({0} given)".format(len(args)))
+            raise TypeError(
+                "extend() takes at most 1 positional "
+                "arguments ({0} given)".format(len(args))
+            )
         other = args[0] if len(args) >= 1 else ()
 
         if isinstance(other, HTTPHeaderDict):
@@ -238,7 +242,7 @@ class HTTPHeaderDict(MutableMapping):
         """
         for key in self:
             val = self._container[key.lower()]
-            yield val[0], ', '.join(val[1:])
+            yield val[0], ", ".join(val[1:])
 
     def items(self):
         return list(self.iteritems())
@@ -257,12 +261,12 @@ class HTTPHeaderDict(MutableMapping):
         headers = []
 
         for line in message.headers:
-            if line.startswith((' ', '\t')):
+            if line.startswith((" ", "\t")):
                 key, value = headers[-1]
-                headers[-1] = (key, value + '\r\n' + line.rstrip())
+                headers[-1] = (key, value + "\r\n" + line.rstrip())
                 continue
 
-            key, value = line.split(':', 1)
+            key, value = line.split(":", 1)
             headers.append((key, value.strip()))
 
         return cls(headers)

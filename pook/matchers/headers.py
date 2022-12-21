@@ -8,7 +8,7 @@ class HeadersMatcher(BaseMatcher):
 
     def __init__(self, headers):
         if not isinstance(headers, dict):
-            raise TypeError('headers must be a dictionary')
+            raise TypeError("headers must be a dictionary")
         BaseMatcher.__init__(self, headers)
 
     @BaseMatcher.matcher

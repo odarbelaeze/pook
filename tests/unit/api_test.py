@@ -41,7 +41,7 @@ def test_mock_contructors(engine):
     assert engine.active is False
     assert engine.isdone() is True
 
-    api.mock('foo.com')
+    api.mock("foo.com")
     assert engine.isdone() is False
     assert len(engine.mocks) == 1
     api.off()

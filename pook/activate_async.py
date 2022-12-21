@@ -13,6 +13,7 @@ def activate_async(fn, _engine):
     Returns:
         function: decorator wrapper function.
     """
+
     @coroutine
     @functools.wraps(fn)
     def wrapper(*args, **kw):

@@ -36,7 +36,7 @@ def test_mock_engine_interceptors(engine):
     assert len(engine.interceptors) == 1
     assert isinstance(engine.interceptors[0], Interceptor)
 
-    engine.remove_interceptor('Interceptor')
+    engine.remove_interceptor("Interceptor")
     assert len(engine.interceptors) == 0
 
 

@@ -6,9 +6,9 @@ from .headers import HTTPHeaderDict
 from .helpers import trigger_methods
 from .matchers.url import protoregex
 
-if sys.version_info < (3,):     # Python 2
+if sys.version_info < (3,):  # Python 2
     from urlparse import urlparse, parse_qs, urlunparse
-else:                           # Python 3
+else:  # Python 3
     from urllib.parse import urlparse, parse_qs, urlunparse
 
 
@@ -38,14 +38,14 @@ class Request(object):
     """
 
     # Store keys
-    keys = ('method', 'headers', 'body', 'url', 'query')
+    keys = ("method", "headers", "body", "url", "query")
 
-    def __init__(self, method='GET', **kw):
+    def __init__(self, method="GET", **kw):
         self._url = None
         self._body = None
         self._query = None
         self._method = method
-        self._extra = kw.get('extra')
+        self._extra = kw.get("extra")
         self._headers = HTTPHeaderDict()
 
         trigger_methods(self, kw)
@@ -64,8 +64,8 @@ class Request(object):
 
     @headers.setter
     def headers(self, headers):
-        if not hasattr(headers, '__setitem__'):
-            raise TypeError('headers must be a dictionary')
+        if not hasattr(headers, "__setitem__"):
+            raise TypeError("headers must be a dictionary")
         self._headers.extend(headers)
 
     @property
@@ -75,7 +75,7 @@ class Request(object):
     @extra.setter
     def extra(self, extra):
         if not isinstance(extra, dict):
-            raise TypeError('extra must be a dictionary')
+            raise TypeError("extra must be a dictionary")
         self._extra = extra
 
     @property
@@ -92,10 +92,9 @@ class Request(object):
             self._url = url
         else:
             if not protoregex.match(url):
-                url = 'http://{}'.format(url)
+                url = "http://{}".format(url)
             self._url = urlparse(url)
-            self._query = (parse_qs(self._url.query)
-                           if self._url.query else self._query)
+            self._query = parse_qs(self._url.query) if self._url.query else self._query
 
     @property
     def query(self, url):
@@ -111,9 +110,9 @@ class Request(object):
 
     @body.setter
     def body(self, body):
-        if hasattr(body, 'decode'):
+        if hasattr(body, "decode"):
             try:
-                body = body.decode('utf-8', 'strict')
+                body = body.decode("utf-8", "strict")
             except Exception:
                 pass
 
@@ -159,18 +158,19 @@ class Request(object):
         """
         entries = []
 
-        entries.append('Method: {}'.format(self._method))
-        entries.append('URL: {}'.format(
-            self._url if isregex(self._url) else self.rawurl))
+        entries.append("Method: {}".format(self._method))
+        entries.append(
+            "URL: {}".format(self._url if isregex(self._url) else self.rawurl)
+        )
 
         if self._query:
-            entries.append('Query: {}'.format(self._query))
+            entries.append("Query: {}".format(self._query))
 
         if self._headers:
-            entries.append('Headers: {}'.format(self._headers))
+            entries.append("Headers: {}".format(self._headers))
 
         if self._body:
-            entries.append('Body: {}'.format(self._body))
+            entries.append("Body: {}".format(self._body))
 
-        separator = '=' * 50
-        return (separator + '\n{}\n' + separator).format('\n'.join(entries))
+        separator = "=" * 50
+        return (separator + "\n{}\n" + separator).format("\n".join(entries))

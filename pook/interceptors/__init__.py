@@ -5,24 +5,24 @@ from .base import BaseInterceptor
 
 # Explicit symbols to export
 __all__ = (
-    'interceptors', 'add', 'get',
-    'BaseInterceptor',
-    'Urllib3Interceptor',
-    'HTTPClientInterceptor',
-    'AIOHTTPInterceptor',
+    "interceptors",
+    "add",
+    "get",
+    "BaseInterceptor",
+    "Urllib3Interceptor",
+    "HTTPClientInterceptor",
+    "AIOHTTPInterceptor",
 )
 
 # Store built-in interceptors in pook.
-interceptors = [
-    Urllib3Interceptor,
-    HTTPClientInterceptor
-]
+interceptors = [Urllib3Interceptor, HTTPClientInterceptor]
 
 # Import aiohttp in modern Python runtimes
 if sys.version_info >= (3, 5, 0):
     try:
-        import aiohttp # noqa
+        import aiohttp  # noqa
         from .aiohttp import AIOHTTPInterceptor
+
         interceptors.append(AIOHTTPInterceptor)
     except ImportError:
         pass
